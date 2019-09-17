@@ -8,19 +8,19 @@ keys = require("./keys.js");
 
 command = process.argv[2];
 
-if (command == "movie") {
+if (command == "movie-this") {
   movie = process.argv.slice(3).join(" ")
   movieThis(movie)
 
 
 }
-if (command == "concert") {
+if (command == "concert-this") {
   artist = process.argv.slice(3).join(" ")
   concertThis(artist);
 }
 
 
-if (command == "spotify") {
+if (command == "spotify-this-song") {
   song = process.argv.slice(3).join(" ")
   spotifyThis(song)
 }
@@ -32,13 +32,13 @@ if (command == "do-what-it-says") {
     instruction = what[0];
     searchInput = what[1].replace('"', '');
     switch (instruction) {
-      case "spotify":
+      case "spotify-this-song":
         spotifyThis(searchInput);
         break;
-      case "movie":
+      case "movie-this":
         movieThis(searchInput);
         break;
-      case "concert":
+      case "concert-this":
         concertThis(searchInput);
         break;
     }
@@ -69,7 +69,7 @@ function movieThis(movie) {
 function concertThis(artist) {
   axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(
     function (response) {
-      console.log(response.data);
+     
       list = response.data;
 
       for (i = 0; i < list.length; i++) {
